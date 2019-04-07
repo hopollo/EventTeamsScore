@@ -1,12 +1,14 @@
 /* Listen to keyborad */
-document.addEventListener("keypress", function(event){
+$(document).keydown(function() {
     const keyName = event.code;
-    console.log(keyName)
+    console.log(keyName);
     switch(keyName) {
         case 'Numpad4':
+        case 'ArrowLeft':
             addLeft();
-            break;
+            break; 
         case 'Numpad6':
+        case 'ArrowRight':
             addRight();
             break;
         case 'Numpad7':
@@ -18,13 +20,18 @@ document.addEventListener("keypress", function(event){
             removeRight();
             break;
         case 'NumpadEnter':
+        case 'KeyF':
+        case 'Slash':
             finish();
             break;
         case 'NumpadDecimal':
+        case 'KeyS':
+        case 'BracketRight':
             start();
+            break;
     }
 });
-
+    
 function start() {
     getClock()
 }
