@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+    display: grid;
+    grid-template-rows: 40vh 60vh;
+    grid-template-areas:
+    "clockDisplays"
+    "counters";
+}
+
+.score { color: red; }
+
+.second { display: none; }
+
+.clock, .timer {
+    grid-area: clockDisplays;
+    color: red;
+}
+
+.counters { 
+    grid-area: counters;
+    color: white;
+    display: grid;
+    grid-template-areas:
+    "locals visitors";
+}
+
+.clock, .localsCounter, .visitorsCounter {
+    font-size: 25vh;
+    font-weight: bold; 
+}
+
+.locals, .visitors { font-size: 15vh; }
+.locals { grid-area: locals; }
+.visitors { grid-area: visitors; }
+
+/* ADMIN PANNEL */
+
+.adminForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
