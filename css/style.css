@@ -18,10 +18,11 @@ body {
     text-transform: uppercase;
     color: white;
     display: grid;
-    grid-template-rows: 40vh 60vh;
+    grid-template-rows: 20vh 60vh 20vh;
     grid-template-areas:
     "clockDisplays"
-    "counters";
+    "counters"
+    "sponsors";
 }
 
 .score { color: red; }
@@ -41,14 +42,28 @@ body {
     "locals visitors";
 }
 
-.clock, .localsCounter, .visitorsCounter {
-    font-size: 25vh;
+.clock { font-size: 10rem; }
+
+.localsCounter, .visitorsCounter {
+    font-size: 15rem;
     font-weight: bold; 
 }
 
-.locals, .visitors { font-size: 15vh; }
+.locals, .visitors { font-size: 10rem; }
 .locals { grid-area: locals; }
 .visitors { grid-area: visitors; }
+
+.sponsors {
+    grid-area: sponsors;
+    height: 30%;
+    background: #0e0e0e;
+}
+
+.sponsors img {
+    height: 100%;
+    width: auto;
+}
+
 
 /* ADMIN PANNEL */
 
