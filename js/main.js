@@ -21,20 +21,48 @@ function getClock() {
 /* Listen to keyborad */
 document.addEventListener("keypress", function(event){
     const keyName = event.code;
-    if (keyName == "Numpad4") { addLeft() }
-    if (keyName == "Numpad6") { addRight() }
+    switch(keyName) {
+        case 'Numpad4':
+            addLeft();
+            break;
+        case 'Numpad6':
+            addRight();
+            break;
+        case 'Numpad7':
+        case 'Numpad1':
+            removeLeft();
+            break;
+        case 'Numpad9':
+        case 'Numpad3':
+            removeRight();
+            break;
+    }
 });
 
 function addLeft() {
-    console.log('addLeftCalled');
     let currentLeftScore = parseInt($('.localsCounter').text());
     currentLeftScore = currentLeftScore + 1;
     $('.localsCounter').text(currentLeftScore);
 }
 
 function addRight() {
-    console.log('addRightCalled');
     let currentRightScore = parseInt($('.visitorsCounter').text());
     currentRightScore = currentRightScore + 1;
     $('.visitorsCounter').text(currentRightScore);
+}
+
+function removeLeft() {
+    let currentLeftScore = parseInt($('.localsCounter').text());
+    if (currentLeftScore > 0) { 
+        currentLeftScore = currentLeftScore - 1;
+        $('.localsCounter').text(currentLeftScore);
+    }
+}
+
+function removeRight() {
+    let currentRightScore = parseInt($('.visitorsCounter').text());
+    if (currentLeftScore > 0) {
+        currentRightScore = currentRightScore - 1;
+        $('.visitorsCounter').text(currentRightScore);
+    }
 }
