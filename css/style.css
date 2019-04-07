@@ -20,9 +20,9 @@ body {
     display: grid;
     grid-template-rows: 20vh 60vh 20vh;
     grid-template-areas:
+    "sponsors"
     "clockDisplays"
-    "counters"
-    "sponsors";
+    "counters";
 }
 
 .score { color: red; }
