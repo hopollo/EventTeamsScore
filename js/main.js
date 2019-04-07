@@ -1,26 +1,7 @@
-getClock()
-
-function getClock() {
-    let clockContainer = document.querySelector('.clock-container');
-    let clockElement = document.createElement('span');
-    clockElement.className = 'clock';
-    clockContainer.appendChild(clockElement);
-  
-    setInterval(() => {
-      let currentTime = new Date();
-      let hours = currentTime.getHours() < 10 ? '0' + currentTime.getHours() : currentTime.getHours();
-      let minutes = currentTime.getMinutes() < 10 ? '0' + currentTime.getMinutes() : currentTime.getMinutes();
-      let seconds = currentTime.getSeconds() < 10 ? '0' + currentTime.getSeconds() : currentTime.getSeconds();
-      
-      clock = `${hours}:${minutes}:${seconds}`;
-  
-      clockElement.innerHTML = clock;
-    }, 1000);
-  }
-
 /* Listen to keyborad */
 document.addEventListener("keypress", function(event){
     const keyName = event.code;
+    console.log(keyName)
     switch(keyName) {
         case 'Numpad4':
             addLeft();
@@ -36,8 +17,30 @@ document.addEventListener("keypress", function(event){
         case 'Numpad3':
             removeRight();
             break;
+        case 'NumpadEnter':
+            finish();
+            break;
+        case 'NumpadDecimal':
+            start();
     }
 });
+
+function start() {
+    getClock()
+}
+
+function getClock() {
+    setInterval(() => {
+      let currentTime = new Date();
+      let hours = currentTime.getHours() < 10 ? '0' + currentTime.getHours() : currentTime.getHours();
+      let minutes = currentTime.getMinutes() < 10 ? '0' + currentTime.getMinutes() : currentTime.getMinutes();
+      let seconds = currentTime.getSeconds() < 10 ? '0' + currentTime.getSeconds() : currentTime.getSeconds();
+      
+      clock = `${hours}:${minutes}:${seconds}`;
+  
+      $('.clock-container').addClass('clock').text(clock);
+    }, 1000);
+}
 
 function addLeft() {
     let currentLeftScore = parseInt($('.localsCounter').text());
@@ -61,8 +64,12 @@ function removeLeft() {
 
 function removeRight() {
     let currentRightScore = parseInt($('.visitorsCounter').text());
-    if (currentLeftScore > 0) {
+    if (currentRightScore > 0) {
         currentRightScore = currentRightScore - 1;
         $('.visitorsCounter').text(currentRightScore);
     }
+}
+
+function finish() {
+    console.log('Game is finished');
 }
