@@ -5,19 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Afficheur Score</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+    <link rel="stylesheet" href="css/jquerysctipttop.css">
 </head>
 <body>
     <div class="wrapper">
-        <div class="first">
-            <div class="clock-container"></div>
+        <div class="content">
+            <div class="clock"></div>
             <div class="counters">
-                <div class="locals" contenteditable="true">Locaux
-                    <div class="localsCounter score" contenteditable="false" spellcheck="false">0</div>
-                </div>
-                <div class="visitors" contenteditable="true">Visiteurs
-                    <div class="visitorsCounter score" contenteditable="false" spellcheck="false">0</div>
-                </div>
+                <div class="teamA" contenteditable="true" spellcheck="false">TeamA</div>
+                <div class="scoreA score" contenteditable="false">0</div>
+                <div class="teamB" contenteditable="true" spellcheck="false">TeamB</div>
+                <div class="scoreB score" contenteditable="false">0</div>
+            </div>
+        </div>
+        <div class="endMatch" style='display: none;'>
+            <div class="endMatch-content">
+                <div class="celebrationText">Félicitations !</div>
+                <div class="winningTeamName"></div>
+                <div class="winningTeamScore score"></div>
             </div>
         </div>
 
@@ -34,7 +40,9 @@
             <img src="img/sponsors/10.png">
         </div>
     </div>
+
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery.fireworks.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
