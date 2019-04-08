@@ -5,72 +5,74 @@
 }
 
 body {
+    color: white;
     background: black;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
     text-decoration: none;
+    font-weight: bold;
 }
 
+.score, .clock { color: red; }
+
 .wrapper {
-    height: 100%;
-    width: 100%;
     text-align: center;
     text-transform: uppercase;
     color: white;
     display: grid;
-    grid-template-rows: 20vh 60vh 20vh;
+    grid-template-rows: 5vh 90vh;
     grid-template-areas:
     "sponsors"
-    "clockDisplays"
-    "counters";
+    "content";
 }
 
-.score { color: red; }
-
-.second { display: none; }
-
-.clock, .timer {
-    grid-area: clockDisplays;
-    color: red;
+.content {
+    grid-area: content;
 }
 
-.counters { 
-    grid-area: counters;
-    color: white;
+.counters {
     display: grid;
+    grid-template-columns: 50vw 50vw;
     grid-template-areas:
-    "locals visitors";
+    "clock clock"
+    "teamA teamB"
+    "scoreA scoreB";
 }
 
-.clock { font-size: 10rem; }
+.clock { grid-area: clock; }
+.teamA { grid-area: teamA; }
+.teamB { grid-area: teamB; }
+.scoreA { grid-area: scoreA; }
+.scoreB { grid-area: scoreB; }
 
-.localsCounter, .visitorsCounter {
-    font-size: 15rem;
-    font-weight: bold; 
-}
-
-.locals, .visitors { font-size: 10rem; }
-.locals { grid-area: locals; }
-.visitors { grid-area: visitors; }
+.clock, .teamA, .teamB, .scoreA, .scoreB, .endMatch > * { font-size: 10em; }
 
 .sponsors {
     grid-area: sponsors;
-    height: 30%;
-    background: #0e0e0e;
+    display: flex;
+    justify-content: center;
+    background: white;
 }
 
-.sponsors img {
+.sponsors img { max-height: 100%; width: auto; padding: 0 2px; }
+
+.endMatch {
+    width: 100%;
     height: 100%;
-    width: auto;
+    position: absolute;
+    bottom: 0;
 }
 
-
-/* ADMIN PANNEL */
-
-.adminForm {
+.endMatch-content { 
     position: absolute;
+    z-index: 999;
+    width: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.celebrationText {
+    color: orange;
 }
