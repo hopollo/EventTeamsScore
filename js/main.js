@@ -31,7 +31,7 @@ $(document).keydown(function() {
             break;
     }
 });
-    
+  
 function start() {
     getClock()
 }
@@ -42,41 +42,65 @@ function getClock() {
       let hours = currentTime.getHours() < 10 ? '0' + currentTime.getHours() : currentTime.getHours();
       let minutes = currentTime.getMinutes() < 10 ? '0' + currentTime.getMinutes() : currentTime.getMinutes();
       let seconds = currentTime.getSeconds() < 10 ? '0' + currentTime.getSeconds() : currentTime.getSeconds();
-      
+    
       clock = `${hours}:${minutes}:${seconds}`;
   
-      $('.clock-container').addClass('clock').text(clock);
+      $('.clock').text(clock);
     }, 1000);
 }
 
 function addLeft() {
-    let currentLeftScore = parseInt($('.localsCounter').text());
+    let currentLeftScore = parseInt($('.scoreA').text());
     currentLeftScore = currentLeftScore + 1;
-    $('.localsCounter').text(currentLeftScore);
+    $('.scoreA').text(currentLeftScore);
 }
 
 function addRight() {
-    let currentRightScore = parseInt($('.visitorsCounter').text());
+    let currentRightScore = parseInt($('.scoreB').text());
     currentRightScore = currentRightScore + 1;
-    $('.visitorsCounter').text(currentRightScore);
+    $('.scoreB').text(currentRightScore);
 }
 
 function removeLeft() {
-    let currentLeftScore = parseInt($('.localsCounter').text());
+    let currentLeftScore = parseInt($('.scoreA').text());
     if (currentLeftScore > 0) { 
         currentLeftScore = currentLeftScore - 1;
-        $('.localsCounter').text(currentLeftScore);
+        $('.scoreA').text(currentLeftScore);
     }
 }
 
 function removeRight() {
-    let currentRightScore = parseInt($('.visitorsCounter').text());
+    let currentRightScore = parseInt($('.scoreB').text());
     if (currentRightScore > 0) {
         currentRightScore = currentRightScore - 1;
-        $('.visitorsCounter').text(currentRightScore);
+        $('.scoreB').text(currentRightScore);
     }
 }
 
 function finish() {
     console.log('Game is finished');
+    const teamA = $('.teamA').text();
+    const teamB = $('.teamB').text();
+    const scoreA = parseInt($('.scoreA').text());
+    const scoreB = parseInt($('.scoreB').text());
+    
+    if (scoreA == scoreB) {
+        winner('aux deux équipes', 'egalitée');
+    }
+    if (scoreA > scoreB && scoreA != 0 && scoreB !=0) {
+        winner(teamA, scoreA);
+    } 
+    if (scoreA < scoreB && scoreA != 0 && scoreB !=0) {
+        winner(teamB, scoreB);
+    }
+}
+
+function winner(team, score) {
+    $('.content').css('display', 'none');
+    $('.endMatch').css('display', 'block');
+
+    $('.winningTeamName').text(team);
+    $('.winningTeamScore').text(score);
+
+    $('.endMatch').fireworks();
 }
