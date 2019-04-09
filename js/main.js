@@ -1,3 +1,7 @@
+$(document).ready(() => {
+    init();
+});
+
 /* Listen to keyborad */
 $(document).keydown(function() {
     const keyName = event.code;
@@ -20,32 +24,55 @@ $(document).keydown(function() {
             removeRight();
             break;
         case 'NumpadEnter':
-        case 'KeyF':
         case 'Slash':
             finish();
-            break;
-        case 'NumpadDecimal':
-        case 'KeyS':
-        case 'BracketRight':
-            start();
             break;
     }
 });
   
-function start() {
-    getClock()
+function init() {
+    $('.clock').append(`
+        <button class="startBtn">GO</button>
+    `);
 }
 
+$('.clock').click(() => {
+    getClock();
+});
+
 function getClock() {
-    setInterval(() => {
-      let currentTime = new Date();
-      let hours = currentTime.getHours() < 10 ? '0' + currentTime.getHours() : currentTime.getHours();
-      let minutes = currentTime.getMinutes() < 10 ? '0' + currentTime.getMinutes() : currentTime.getMinutes();
-      let seconds = currentTime.getSeconds() < 10 ? '0' + currentTime.getSeconds() : currentTime.getSeconds();
+    $('.startBtn').css('display','none');
     
-      clock = `${hours}:${minutes}:${seconds}`;
-  
-      $('.clock').text(clock);
+    let hours = 0;
+    let minutes = 0;
+    let seconds = 0;
+
+    setInterval(() => {
+        /*
+        let currentTime = new Date();
+        let hours = currentTime.getHours() < 10 ? '0' + currentTime.getHours() : currentTime.getHours();
+        let minutes = currentTime.getMinutes() < 10 ? '0' + currentTime.getMinutes() : currentTime.getMinutes();
+        let seconds = currentTime.getSeconds() < 10 ? '0' + currentTime.getSeconds() : currentTime.getSeconds();
+        */
+        
+        seconds = seconds + 1;
+
+        if (seconds == 60) { 
+            minutes = minutes + 1;
+            seconds = 0;
+        }
+        if (minutes == 60) {
+            hours = hours + 1;
+            minutes = 0;
+        }
+
+        s = seconds < 10 ? '0' + seconds : seconds;
+        m = minutes < 10 ? '0' + minutes : minutes;
+        h = hours < 10 ? '0' + hours : hours;
+
+        clock = `${m}:${s}`;
+
+        $('.clock').text(clock);
     }, 1000);
 }
 
