@@ -27,6 +27,23 @@ body {
     "content";
 }
 
+.startBtn {
+    width: 20%;
+    height: 100px;
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+    background: orange;
+    border: none;
+    border-radius: 50px;
+}
+
+.startBtn:hover {
+    color:red;
+    cursor: pointer;
+    background:yellow;
+}
+
 .content {
     grid-area: content;
 }
