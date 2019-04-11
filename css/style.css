@@ -14,7 +14,7 @@ body {
     font-weight: bold;
 }
 
-.score, .clock { color: red; }
+.score, .clock, .currentClock { color: red; cursor: pointer; }
 
 .wrapper {
     text-align: center;
@@ -36,6 +36,20 @@ body {
     background: orange;
     border: none;
     border-radius: 50px;
+    cursor: pointer;
+}
+
+.nextBtnC, .nextBtnL {
+    position: absolute;
+    border: none;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 15px;
+    width: 15px;
+    background: grey;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .startBtn:hover {
@@ -57,13 +71,13 @@ body {
     "scoreA scoreB";
 }
 
-.clock { grid-area: clock; }
+.clock, .currentClock { grid-area: clock; }
 .teamA { grid-area: teamA; }
 .teamB { grid-area: teamB; }
 .scoreA { grid-area: scoreA; }
 .scoreB { grid-area: scoreB; }
 
-.clock, .teamA, .teamB, .scoreA, .scoreB, .endMatch > * { font-size: 10em; }
+.clock, .currentClock, .teamA, .teamB, .scoreA, .scoreB, .endMatch > * { font-size: 10em; }
 
 .sponsors {
     grid-area: sponsors;
@@ -73,6 +87,31 @@ body {
 }
 
 .sponsors img { max-height: 100%; width: auto; padding: 0 2px; }
+
+.leaderboard .table {
+    display: grid;
+    grid-template-areas:
+    "t1 s1 s2 t2"
+    "t3 s3 s4 t4"
+    "t5 s5 s6 t6"
+    "t7 s7 s8 t8";
+    grid-template-columns: 1fr .5fr .5fr 1fr;
+    font-size: 5em;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.t1 { grid-area: t1; } .s1 { grid-area: s1; }
+.t2 { grid-area: t2; } .s2 { grid-area: s2; }
+.t3 { grid-area: t3; } .s3 { grid-area: s3; }
+.t4 { grid-area: t4; } .s4 { grid-area: s4; }
+.t5 { grid-area: t5; } .s5 { grid-area: s5; }
+.t6 { grid-area: t6; } .s6 { grid-area: s6; }
+.t7 { grid-area: t7; } .s7 { grid-area: s7; }
+.t8 { grid-area: t8; } .s8 { grid-area: s8; }
 
 .endMatch {
     width: 100%;
@@ -92,4 +131,5 @@ body {
 
 .celebrationText {
     color: orange;
+    cursor: pointer;
 }
