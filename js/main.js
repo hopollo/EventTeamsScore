@@ -1,46 +1,42 @@
 $(document).ready(() => {
     init();
 });
-
-/* Listen to keyborad */
-$(document).keydown(function() {
-    const keyName = event.code;
-    console.log(keyName);
-    switch(keyName) {
-        case 'Numpad4':
-        case 'ArrowLeft':
-            addLeft();
-            break; 
-        case 'Numpad6':
-        case 'ArrowRight':
-            addRight();
-            break;
-        case 'Numpad7':
-        case 'Numpad1':
-            removeLeft();
-            break;
-        case 'Numpad9':
-        case 'Numpad3':
-            removeRight();
-            break;
-        case 'NumpadEnter':
-        case 'Slash':
-            finish();
-            break;
-    }
-});
   
 function init() {
+    getClock();
+    
     $('.clock').append(`
         <button class="startBtn">GO</button>
     `);
+
+    $('.startBtn').click(() => {
+        startCount();
+    });
 }
 
-$('.clock').click(() => {
-    getClock();
+$('.nextBtnC').click(() => {
+    $('.content').css('display', 'none');
+    $('.leaderboard').css('display', 'block');
 });
 
-function getClock() {
+$('.nextBtnL').click(() => {
+    $('.leaderboard').css('display', 'none');
+    $('.content').css('display', 'block');
+});
+
+$('.scoreA').click(() => {
+    addLeft();
+});
+
+$('.scoreB').click(() => {
+    addRight();
+});
+
+$('.celebrationText').click(() => {
+    location.reload();
+});
+
+function startCount() {
     $('.startBtn').css('display','none');
     
     let hours = 0;
@@ -48,13 +44,6 @@ function getClock() {
     let seconds = 0;
 
     setInterval(() => {
-        /*
-        let currentTime = new Date();
-        let hours = currentTime.getHours() < 10 ? '0' + currentTime.getHours() : currentTime.getHours();
-        let minutes = currentTime.getMinutes() < 10 ? '0' + currentTime.getMinutes() : currentTime.getMinutes();
-        let seconds = currentTime.getSeconds() < 10 ? '0' + currentTime.getSeconds() : currentTime.getSeconds();
-        */
-        
         seconds = seconds + 1;
 
         if (seconds == 60) { 
@@ -73,6 +62,23 @@ function getClock() {
         clock = `${m}:${s}`;
 
         $('.clock').text(clock);
+
+        $('.clock').click(() => {
+            finish();
+        });
+    }, 1000);
+}
+
+function getClock() {
+    setInterval(() => {
+        let currentTime = new Date();
+        let currentHours = currentTime.getHours() < 10 ? '0' + currentTime.getHours() : currentTime.getHours();
+        let currentMinutes = currentTime.getMinutes() < 10 ? '0' + currentTime.getMinutes() : currentTime.getMinutes();
+        let currentSeconds = currentTime.getSeconds() < 10 ? '0' + currentTime.getSeconds() : currentTime.getSeconds();
+        
+        currentClock = `${currentHours}:${currentMinutes}:${currentSeconds}`;
+
+        $('.currentClock').text(currentClock);
     }, 1000);
 }
 
@@ -112,7 +118,7 @@ function finish() {
     const scoreB = parseInt($('.scoreB').text());
     
     if (scoreA == scoreB) {
-        winner('aux deux équipes', 'egalitée');
+        winner('aux deux équipes', 'egalité');
     }
     if (scoreA > scoreB && scoreA != 0 && scoreB !=0) {
         winner(teamA, scoreA);
